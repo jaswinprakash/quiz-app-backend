@@ -24,9 +24,8 @@ def submit_answer(request, id):
     selected_choice = request.POST.get('choice')
 
     if selected_choice == question.correct_answer:
-        # Correct answer
-        score = request.session.get('score', 0) + 1  # Get the current score from session and increment it by 1
-        request.session['score'] = score  # Update the score in the session
+        score = request.session.get('score', 0) + 1
+        request.session['score'] = score
         response_data = {
             "status_code": 6000,
             "message": "Correct answer",
@@ -34,8 +33,7 @@ def submit_answer(request, id):
         }
         return Response(response_data)
     else:
-        # Incorrect answer
-        score = request.session.get('score', 0)  # Get the current score from session
+        score = request.session.get('score', 0)
         response_data = {
             "status_code": 6001,
             "message": "Incorrect answer",
